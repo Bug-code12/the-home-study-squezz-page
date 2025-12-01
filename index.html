@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <style>
+        /* Language Toggle Button */
+        .lang-toggle {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-left: 16px;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s ease;
+        }
+        .lang-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .hidden {
+            display: none !important;
+        }
+        /* RTL Support */
+        [dir="rtl"] {
+            text-align: right;
+            font-family: 'Tajawal', sans-serif;
+        }
+        [dir="rtl"] .nav-links {
+            margin-right: auto;
+            margin-left: 0;
+        }
+        [dir="rtl"] .logo-section {
+            margin-right: 0;
+            margin-left: auto;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>The Home Study - Transform Your Financial Future</title>
+
+    <style>
+    :root {
+        /* Light theme (default) */
+        --bg-color: #fef7ed;
+        --bg-secondary: #fff5e6;
+        --text-color: #1f2937;
+        --text-secondary: #4b5563;
+        --card-bg: #ffffff;
+        --header-bg: #374351;
+        --accent-color: #fbab00;
+        --accent-hover: #f59e0b;
+        --text-light: #6b7280;
+        --border-color: #e5e7eb;
+        --shadow-color: rgba(0, 0, 0, 0.1);
+        --overlay: rgba(255, 255, 255, 0.8);
+        --input-bg: #ffffff;
+        --footer-bg: #2c3e50;
+        --section-bg: #f8f9fa;
+        --footer-text: #ffffff;
+    }
+    
+    [data-theme="dark"] {
+        --bg-color: #121212;
+        --bg-secondary: #1e1e1e;
+        --text-color: #f0f0f0;
+        --text-secondary: #a1a1aa;
+        --card-bg: #1e1e1e;
+        --header-bg: #0f172a;
+        --accent-color: #fbbf24;
+        --accent-hover: #fcd34d;
+        --text-light: #a1a1aa;
+        --border-color: #3f3f46;
+        --shadow-color: rgba(0, 0, 0, 0.3);
+        --overlay: rgba(0, 0, 0, 0.7);
+        --input-bg: #2d2d2d;
+        --footer-bg: #111827;
+        --section-bg: #1a1a1a;
+        --footer-text: #f0f0f0;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        overflow-x: hidden;
+        background: var(--bg-color);
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Apply dark mode to all sections */
+    section {
+        background: var(--bg-color);
+        color: var(--text-color);
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Style form elements */
+    input, textarea, select {
+        background-color: var(--input-bg);
+        color: var(--text-color);
+        border-color: var(--border-color);
+    }
+
+    /* Style cards and containers */
+    .card, .container, .section-container, .learn-item, .faq-item {
+        background: var(--card-bg);
+        color: var(--text-color);
+        border-color: var(--border-color);
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+
+    /* Style buttons */
+    button, .btn, .get-started-btn, .submit-btn {
+        background: var(--accent-color);
+        color: #000;
+        transition: all 0.3s ease;
+    }
+
+    button:hover, .btn:hover, .get-started-btn:hover, .submit-btn:hover {
+        background: var(--accent-hover);
+    }
+
+    /* Style sections with background */
+    .faqs-section, .section-bg {
+        background: var(--section-bg) !important;
+    }
+
+    /* Style footer */
+    footer {
+        background: var(--footer-bg) !important;
+        color: var(--footer-text) !important;
+    }
+
+    /* Style links */
+    a {
+        color: var(--accent-color);
+    }
+
+    a:hover {
+        color: var(--accent-hover);
+    }
+
+    /* Style headings */
+    h1, h2, h3, h4, h5, h6, .section-title {
+        color: var(--text-color) !important;
+    }
+
+    /* Style secondary text */
+    .text-secondary, .subtitle, .hero-description {
+        color: var(--text-secondary) !important;
+    }
+
+    /* Style form placeholders */
+    ::placeholder {
+        color: var(--text-light);
+        opacity: 1;
+    }
+
+    :-ms-input-placeholder, ::-ms-input-placeholder {
+        color: var(--text-light);
+    }
+
+/* Navbar Styles */
+/* Theme Toggle Button */
+.theme-toggle {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 12px;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Navbar */
+.navbar {
+    position: sticky;
+    top: 0;
+    background: var(--header-bg) !important;
+  backdrop-filter: none !important;
+  border-bottom: none !important;
+  z-index: 100;
+  padding: 8px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  color: white; /* Ensures all text in navbar is white by default */
+}
+
+.navbar * {
+  color: white; /* Makes all text in navbar white by default */
+}
+
+.nav-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  color: white;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: bold;
+  color: white !important;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white !important;
+  font-weight: 500;
+  transition: all 0.3s;
+  opacity: 0.9;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: white !important;
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.get-started-btn {
+  background: #fbab00;
+  color: white !important;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(251, 146, 60, 0.4);
+}
+
+.get-started-btn:hover {
+  background: #fb923c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(251, 146, 60, 0.6);
+}
+
+/* Enhanced Particle Background Canvas */
+#particleCanvas,
+#featuresParticleCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  background: transparent;
+}
+
+#featuresParticleCanvas {
+  z-index: 0;
+}
+
+/* Main content wrapper */
+.main-content {
+  position: relative;
+  z-index: 10;
+}
+
+/* Header/Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(251, 146, 60, 0.1);
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  
+}
+
+.navbar-logo {
+  height: 56px;
+  width: auto;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #6b7280;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #fbab00;
+}
+
+.get-started-btn {
+  background: #fbab00;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(251, 146, 60, 0.4);
+}
+
+.get-started-btn:hover {
+  background: #fbab00;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(251, 146, 60, 0.6);
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 80px 24px 120px;
+  position: relative;
+  z-index: 1;
+  background-color: var(--section-bg);
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+/* Hero Section Circles */
+.hero-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  z-index: 0;
+  animation: float 10s ease-in-out infinite;
+  transition: opacity 0.3s ease;
+}
+
+[data-theme="dark"] .hero-circle {
+  opacity: 0.05;
+}
+
+.hero-circle1 {
+  width: 150px;
+  height: 150px;
+  background: #fbab00;
+  top: 5%;
+  left: 5%;
+  animation-delay: 0s;
+  animation-name: rotate;
+}
+
+.hero-circle2 {
+  width: 220px;
+  height: 220px;
+  background: #fbab00;
+  bottom: 10%;
+  right: 8%;
+  animation-duration: 18s;
+  animation-name: wave;
+}
+
+.hero-circle3 {
+  width: 90px;
+  height: 90px;
+  background: #fbab00;
+  top: 60%;
+  right: 15%;
+  animation-delay: 1.5s;
+}
+
+.hero-circle4 {
+  width: 180px;
+  height: 180px;
+  background: #fbab00;
+  bottom: 30%;
+  left: 8%;
+  animation-delay: 2.5s;
+  animation-name: rotate;
+}
+
+.hero-circle5 {
+  width: 120px;
+  height: 120px;
+  background: #fbab00;
+  top: 15%;
+  right: 20%;
+  animation-duration: 14s;
+  animation-name: float;
+  animation-timing-function: ease-in-out;
+}
+
+.hero-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.hero-logo {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.main-logo {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+  min-width: 300px;
+  margin: 0 auto 20px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fed7aa;
+  color: #fbab00;
+  padding: 12px 16px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  width: fit-content;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  background: #fbab00;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #111827;
+  line-height: 1.1;
+}
+
+.gradient-text {
+  color: #fb923c;
+}
+
+.hero-description {
+  font-size: 20px;
+  color: #6b7280;
+  line-height: 1.7;
+}
+
+.enhance-btn {
+  background: #fb923c;
+  color: white;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 24px;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(251, 146, 60, 0.4);
+  transition: all 0.3s;
+  width: fit-content;
+}
+
+.enhance-btn:hover {
+  background: #fbab00;
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 40px rgba(251, 146, 60, 0.6);
+}
+
+/* Contact Form */
+.contact-form-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(8px);
+  padding: 32px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.form-header h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.form-header p {
+  color: #6b7280;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #fbab00;
+  box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.1);
+}
+
+/* Add light bulb animation */
+@keyframes bulbPulse {
+  0%, 100% { 
+    opacity: 0.9; 
+    filter: drop-shadow(0 0 5px #ffeb3b) drop-shadow(0 0 10px rgba(255, 235, 59, 0.5));
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1; 
+    filter: drop-shadow(0 0 15px #ffeb3b) drop-shadow(0 0 30px rgba(255, 235, 59, 0.8));
+    transform: scale(1.1);
+  }
+}
+
+.submit-btn {
+  width: 100%;
+  max-width: 360px;
+  background: linear-gradient(135deg, #ff9d00, #ff6b00);
+  color: white;
+  font-weight: 900;
+  padding: 20px 36px;
+  border: none;
+  border-radius: 50px;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(255, 107, 0, 0.6);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.3;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ff6b00, #ff9d00);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255, 107, 0, 0.5);
+}
+
+.submit-btn:hover::before {
+  opacity: 1;
+}
+
+.submit-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 15px rgba(255, 107, 0, 0.5);
+}
+
+.bulb-icon {
+  font-size: 26px;
+  animation: bulbPulse 2s infinite;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 0 15px rgba(255, 235, 59, 0.9);
+  line-height: 1;
+  margin-top: -2px;
+  transform: translateZ(0);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.submit-btn span {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Features Section */
+.features-section {
+  padding: 80px 24px;
+  background: #f9fafb;
+  position: relative;
+  overflow: hidden;
+}
+
+.features-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.features-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.features-header h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.features-header p {
+  font-size: 20px;
+  color: #6b7280;
+  max-width: 768px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 32px;
+}
+
+.feature-card {
+  background: #fbab00;
+  padding: 32px;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(251, 158, 11, 0.2);
+  transition: all 0.5s;
+  cursor: pointer;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+}
+
+.feature-card:hover {
+  background: white;
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: all 0.3s;
+}
+
+.feature-card:hover .feature-icon {
+  background: #fbab00;
+}
+
+.feature-card h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 16px;
+  transition: color 0.3s;
+}
+
+.feature-card:hover h3 {
+  color: black;
+}
+
+.feature-card p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  flex-grow: 1;
+  transition: all 0.3s;
+}
+
+.feature-card:hover p {
+  color: #6b7280;
+}
+
+/* New Footer */
+.new-footer {
+  background: #fbab00;
+  color: white;
+}
+
+.footer-top {
+  padding: 60px 24px 40px;
+}
+
+.footer-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 48px;
+}
+
+.footer-info {
+  flex: 1;
+  max-width: 600px;
+}
+
+.footer-info h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.footer-info p {
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.contact-item {
+  text-align: right;
+}
+
+.contact-email,
+.contact-phone {
+  font-size: 18px;
+  font-weight: 500;
+  display: block;
+}
+
+.contact-phone {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.connect-support-btn {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 16px;
+}
+
+.connect-support-btn:hover {
+  background: white;
+  color: #fbab00;
+}
+
+.footer-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 0 24px;
+}
+
+.footer-bottom {
+  padding: 40px 24px;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-logo-img {
+  height: 48px;
+  width: auto;
+
+}
+
+.footer-brand-text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.social-text {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.social-icons {
+  display: flex;
+  gap: 16px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.social-icon:hover {
+  background: white;
+  color: #fbab00;
+  transform: translateY(-2px);
+}
+
+/* Responsive Footer */
+@media (max-width: 1024px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 32px;
+  }
+
+  .footer-contact {
+    align-items: center;
+  }
+
+  .contact-item {
+    text-align: center;
+  }
+
+  .footer-info h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-top {
+    padding: 40px 20px 30px;
+  }
+
+  .footer-bottom {
+    padding: 30px 20px;
+  }
+
+  .footer-container {
+    gap: 24px;
+  }
+
+  .footer-info h2 {
+    font-size: 1.75rem;
+  }
+
+  .footer-info p {
+    font-size: 16px;
+  }
+
+  .footer-social {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 32px;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .features-header h2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-container {
+    padding: 16px 20px;
+  }
+
+  .navbar-logo {
+    height: 40px;
+  }
+
+  .hero-section {
+    padding: 60px 20px 80px;
+  }
+
+  .main-logo {
+    max-width: 280px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .features-section {
+    padding: 60px 20px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .feature-card {
+    height: auto;
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .features-header h2 {
+    font-size: 2rem;
+  }
+
+  .contact-form-card {
+    padding: 24px;
+  }
+
+  .feature-card {
+    padding: 24px;
+    min-height: 260px;
+  }
+
+  .main-logo {
+    max-width: 240px;
+  }
+}
+canvas {
+      display: block;
+    }
+    .section-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.section-description {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.faqs-section {
+  position: relative;
+  padding: 80px 20px;
+  background-color: #f8f9fa;
+  overflow: hidden;
+}
+
+.faqs-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.faq-image-wrapper {
+  flex: 1 1 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.faqs-container {
+  flex: 1 1 45%;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  padding: 40px 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.faqs-title {
+  font-size: 28px;
+  color: #343a40;
+  margin-bottom: 25px;
+}
+
+.faq-question {
+  background: #fff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.faq-question:hover {
+  background: #f8f9fa;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question label {
+  font-size: 18px;
+  color: #343a40;
+  cursor: pointer;
+}
+
+.faq-arrow {
+  font-size: 24px;
+  color: #fbab00;
+  transition: transform 0.3s;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"]:checked ~ .faq-question .faq-arrow {
+  transform: rotate(45deg);
+}
+
+input[type="checkbox"]:checked ~ .faq-answer {
+  display: block;
+}
+
+.faq-answer {
+  display: none;
+  margin-top: 15px;
+  padding: 16px;
+  background-color: rgba(0, 201, 168, 0.1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.faq-answer p {
+  color: var(--text-color);
+  line-height: 1.7;
+  margin: 0;
+  font-size: 15px;
+}
+
+/* Add animation when answer is shown */
+input[type="checkbox"]:checked ~ .faq-answer {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* دوائر متحركة */
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  z-index: 0;
+  animation: float 10s ease-in-out infinite;
+}
+
+.circle1 {
+  width: 100px;
+  height: 100px;
+  background: #fbab00;
+  top: 5%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.circle2 {
+  width: 180px;
+  height: 180px;
+  background: #fbab00;
+  top: 20%;
+  right: 5%;
+  animation-delay: 2s;
+  animation-name: rotate;
+}
+
+.circle3 {
+  width: 60px;
+  height: 60px;
+  background: #fbab00;
+  bottom: 10%;
+  left: 15%;
+  animation-delay: 1s;
+}
+
+.circle4 {
+  width: 150px;
+  height: 150px;
+  background: #fbab00;
+  bottom: 15%;
+  right: 20%;
+  animation-delay: 3s;
+}
+
+.circle5 {
+  width: 90px;
+  height: 90px;
+  background:#fbab00;
+  top: 60%;
+  left: 40%;
+  animation-delay: 4s;
+  animation-name: wave;
+}
+
+.circle6 {
+  width: 120px;
+  height: 120px;
+  background: #fbab00;
+  top: 35%;
+  left: 70%;
+  animation-delay: 5s;
+}
+
+.circle7 {
+  width: 50px;
+  height: 50px;
+  background: #fbab00;
+  bottom: 25%;
+  right: 10%;
+  animation-delay: 6s;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(30px); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .faqs-layout {
+    flex-direction: column;
+  }
+
+  .faq-image-wrapper, .faqs-container {
+    width: 100%;
+  }
+
+  .faq-illustration {
+    max-width: 80%;
+  }
+
+  .faqs-title {
+    text-align: center;
+  }
+}
+
+/* Already Registered Section */
+.registered-section {
+  width: 100%;
+  background-color: #fef7ed;; /* اللون البيج */
+  position: relative;
+  overflow: hidden;
+}
+
+.registered-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 40px 0;
+  flex-wrap: wrap; /* يخليها تستجيب للموبايل */
+}
+
+.registered-image {
+  width: 600px;
+  max-width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  filter: blur(2px);
+  
+}
+
+.registered-content {
+  flex: 1;
+  text-align: left;
+}
+
+.registered-header h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+.registered-header p {
+  font-size: 20px;
+  color: #6b7280;
+  max-width: 768px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.registered-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.login-btn {
+  background: #fbab00;
+  color: white;
+  padding: 16px 48px;
+  border: none;
+  border-radius: 24px;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(251, 146, 60, 0.4);
+  transition: all 0.3s;
+}
+
+.login-btn:hover {
+  background: #fb923c;
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 40px rgba(251, 146, 60, 0.6);
+}
+
+.support-link {
+  color: #fbab00;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.support-link:hover {
+  color: #fb923c;
+}
+
+/* Responsive Design for New Sections */
+@media (max-width: 1024px) {
+  .faqs-header h2 {
+    font-size: 2.5rem;
+  }
+
+  .registered-header h2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .faqs-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .faq-card {
+    padding: 24px;
+  }
+
+  .faqs-header h2 {
+    font-size: 2rem;
+  }
+
+  .registered-header h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .faqs-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .registered-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .submit-btn {
+    margin: 0 auto;
+    padding: 12px 20px;
+    font-size: 16px;
+    min-height: auto;
+    line-height: 1.2;
+  }
+}
+</style>
+<script>// Particle background system removed
+
+// Initialize when DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+  // Make FAQ questions clickable
+  document.querySelectorAll('.faq-question').forEach(question => {
+    question.style.cursor = 'pointer';
+  });
+
+  // Contact form handling
+  const contactForm = document.getElementById("contactForm")
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault()
+
+      const fullName = document.getElementById("fullName").value
+      const whatsappNumber = document.getElementById("whatsappNumber").value
+      const email = document.getElementById("email").value
+
+      // Basic validation
+      if (!fullName.trim()) {
+        alert("Please enter your full name")
+        return
+      }
+      if (!whatsappNumber.trim()) {
+        alert("Please enter your WhatsApp number")
+        return
+      }
+      if (!email.trim() || !email.includes("@")) {
+        alert("Please enter a valid email address")
+        return
+      }
+
+      // Simulate form submission
+      alert("Thank you for your interest! We will contact you soon.")
+      this.reset()
+    })
+  }
+
+  // Smooth scrolling for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault()
+      const target = document.querySelector(this.getAttribute("href"))
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        })
+      }
+    })
+  })
+
+  // Add interactive button effects
+  document.querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", function () {
+      this.style.transform = "scale(0.95)"
+      setTimeout(() => {
+        this.style.transform = ""
+      }, 150)
+    })
+  })
+
+  // FAQ interaction
+  document.querySelectorAll('.faq-question').forEach(item => {
+    item.addEventListener('click', function() {
+      const checkbox = this.parentElement.querySelector('.faq-checkbox');
+      checkbox.checked = !checkbox.checked;
+    });
+  });
+})
+// Theme Toggle Functionality
+function toggleTheme() {
+    const html = document.documentElement;
+    const theme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    
+    // Update button text
+    const themeIcon = document.getElementById('themeToggle');
+    if (themeIcon) {
+        themeIcon.innerHTML = theme === 'dark' ? '☀️' : '🌙';
+    }
+}
+
+// Initialize theme from localStorage or system preference
+function initTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    } else if (prefersDark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+    
+    // Set initial button icon
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const themeIcon = document.getElementById('themeToggle');
+    if (themeIcon) {
+        themeIcon.innerHTML = currentTheme === 'dark' ? '☀️' : '🌙';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize theme
+    initTheme();
+    
+    // Add theme toggle event
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+    
+    // Language Toggle Functionality
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+        langToggle.addEventListener('click', function() {
+            const isRTL = document.documentElement.dir === 'rtl';
+            document.documentElement.dir = isRTL ? 'ltr' : 'rtl';
+            document.documentElement.lang = isRTL ? 'en' : 'ar';
+            
+            // Toggle language text
+            document.querySelectorAll('.en-text, .ar-text').forEach(el => {
+                el.classList.toggle('hidden');
+            });
+        });
+    }
+
+    // Select all sections that you want to animate
+    const sections = document.querySelectorAll('#home, #features, #faqs-section, #registered-section');
+
+    // Check if sections are selected correctly
+    if (sections.length === 0) {
+        console.error('No sections found. Check your selectors.');
+        return;
+    }
+
+    // Set initial styles for each section
+    sections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(50px)';
+        section.style.transition = 'opacity 1s ease-in-out, transform 1s cubic-bezier(0.25, 0.1, 0.25, 1)';
+        section.style.visibility = 'visible';
+    });
+
+    // Function to check if a section is in the viewport
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) - 150 &&
+            rect.bottom >= 0
+        );
+    }
+
+    // Function to check visibility and apply animations
+    function checkVisibility() {
+        sections.forEach(section => {
+            if (isInViewport(section)) {
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+            }
+        });
+    }
+
+    // Add event listener for scroll events
+    window.addEventListener('scroll', checkVisibility);
+
+    // Check visibility on page load
+    checkVisibility();
+});
+</script>
+</head>
+<body>
+    <!-- Enhanced Particle Background Canvas -->
+    <canvas id="particleCanvas"></canvas>
+    <canvas id="featuresParticleCanvas"></canvas>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="navbar">
+            <div class="nav-container">
+                <div class="logo-section">
+                    <img src="public/images/ths-logo.png" alt="THS Logo" class="navbar-logo">
+                    
+                </div>
+                
+              
+                
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <span class="en-text">🌙</span>
+                        <span class="ar-text hidden">🌙</span>
+                    </button>
+                    <button class="lang-toggle" id="langToggle">
+                        <span class="en-text">العربية</span>
+                        <span class="ar-text hidden">English</span>
+                    </button>
+                    <button class="get-started-btn">
+                        <span class="en-text">Get Started</span>
+                        <span class="ar-text hidden">ابدأ الآن</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <!-- Animated Background Circles -->
+            <span class="hero-circle hero-circle1"></span>
+            <span class="hero-circle hero-circle2"></span>
+            <span class="hero-circle hero-circle3"></span>
+            <span class="hero-circle hero-circle4"></span>
+            <span class="hero-circle hero-circle5"></span>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-logo">
+                        <img src="public/images/the-logo.png" alt="The Home Study Logo" class="main-logo">
+                    </div>
+
+                    
+
+                    <h1 class="hero-title">
+                        <span class="en-text">Transform Your financial life with <span class="gradient-text">free videos</span></span>
+                        <span class="ar-text hidden">حسن حياتك المالية مع <span class="gradient-text">فيديوهات مجانية</span></span>
+                    </h1>
+
+                    <p class="hero-description">
+                        <span class="en-text">No Sign-up! Just add your name, WhatsApp number, and email to get free training. Learn the fundamentals that only 1% of Egyptians are mastering.</span>
+                        <span class="ar-text hidden">لا حاجة للتسجيل! فقط أضف اسمك ورقم الواتساب والبريد الإلكتروني للحصول على تدريب مجاني. تعلم الأساسيات التي يتقنها 1% فقط من المصريين.</span>
+                    </p>
+
+                </div>
+
+                <div class="contact-form-card">
+                    <div class="form-header">
+                        <h3><span class="en-text">Get Your Free Training</span><span class="ar-text hidden">احصل على تدريبك المجاني</span></h3>
+                        <p><span class="en-text">Be the first to unlock exclusive skills</span><span class="ar-text hidden">كن أول من يكتسب مهارات حصرية</span></p>
+                    </div>
+
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="fullName"><span class="en-text">Full Name</span><span class="ar-text hidden">الاسم بالكامل</span></label>
+                            <input type="text" id="fullName" placeholder="مثال: أحمد" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="whatsappNumber"><span class="en-text">WhatsApp Number</span><span class="ar-text hidden">رقم الواتساب</span></label>
+                            <input type="tel" id="whatsappNumber" placeholder="مثال: 01145233333" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني</label>
+                            <input type="email" id="email" placeholder="مثال: example@email.com" required>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+  <span class="en-text">Get Your Free Training</span>
+  <span class="ar-text hidden">احصل على تدريبك المجاني</span>
+  <span class="bulb-icon">💡</span>
+</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- What You'll Learn Section -->
+        <section id="learn" class="faqs-section" style="padding: 80px 24px; background-color: var(--section-bg);">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+                <h2 class="section-title" style="text-align: center; font-size: 2.5rem; color: var(--text-color) !important; margin-bottom: 20px; position: relative;">
+                    <span class="en-text">What You'll Learn</span>
+                    <span class="ar-text hidden">ما سوف تتعلمه</span>
+                    <div style="height: 4px; width: 80px; background: #fbab00; margin: 16px auto 12px; border-radius: 2px;"></div>
+                    <p style="font-size: 1.2rem; color: #4b5563; font-weight: 400; margin-top: 16px;">
+                        <span class="en-text">Start Your Financial Freedom Journey</span>
+                        <span class="ar-text hidden">ابدأ رحلتك نحو الحرية المالية</span>
+                    </p>
+                </h2>
+                
+                <div class="learn-list" style="max-width: 900px; margin: 0 auto 40px;">
+                    <div class="learn-item" style="background: var(--card-bg); margin-bottom: 16px; border-radius: 12px; box-shadow: 0 4px 12px var(--shadow-color); border: 1px solid var(--border-color); overflow: hidden; transition: all 0.3s ease;">
+                        <input type="checkbox" id="learn1" class="faq-checkbox" style="display: none;">
+                        <label for="learn1" class="faq-question" style="display: block; padding: 20px 24px; cursor: pointer; font-weight: 500; color: var(--text-color); font-size: 18px; margin: 0; background: var(--card-bg);">
+                            <span class="en-text">Stock Market Fundamentals</span>
+                            <span class="ar-text hidden">أساسيات سوق الأوراق المالية</span>
+                        </label>
+                        <div class="faq-answer" style="display: none; padding: 0 24px 20px; color: var(--text-secondary); line-height: 1.7; font-size: 16px; background: var(--card-bg); transition: all 0.3s ease;">
+                            <p class="en-text">Understand the basics of stock markets, how they operate, and the key players involved. Learn about different market types and trading sessions.</p>
+                            <p class="ar-text hidden">افهم أساسيات أسواق الأوراق المالية، وكيفية عملها، والأطراف الرئيسية المشاركة. تعرف على أنواع الأسواق المختلفة وجلسات التداول.</p>
+                        </div>
+                    </div>
+
+                    <div class="learn-item" style="background: var(--card-bg); margin-bottom: 16px; border-radius: 12px; box-shadow: 0 4px 12px var(--shadow-color); border: 1px solid var(--border-color); overflow: hidden; transition: all 0.3s ease;">
+                        <input type="checkbox" id="learn2" class="faq-checkbox" style="display: none;">
+                        <label for="learn2" class="faq-question" style="display: block; padding: 20px 24px; cursor: pointer; font-weight: 500; color: var(--text-color); font-size: 18px; margin: 0; background: var(--card-bg); transition: all 0.3s ease;">
+                            <span class="en-text">Technical Analysis</span>
+                            <span class="ar-text hidden">التحليل الفني</span>
+                        </label>
+                        <div class="faq-answer" style="display: none; padding: 0 24px 20px; color: var(--text-secondary); line-height: 1.7; font-size: 16px; background: var(--card-bg); transition: all 0.3s ease;">
+                            <p class="en-text">Master chart patterns, indicators, and technical tools to identify trading opportunities and make informed decisions based on price action.</p>
+                            <p class="ar-text hidden">أتقن أنماط الرسوم البيانية والمؤشرات والأدوات الفنية لتحديد فرص التداول واتخاذ قرارات مستنيرة بناءً على حركة السعر.</p>
+                        </div>
+                    </div>
+
+                    <div class="learn-item" style="background: var(--card-bg); margin-bottom: 16px; border-radius: 12px; box-shadow: 0 4px 12px var(--shadow-color); border: 1px solid var(--border-color); overflow: hidden; transition: all 0.3s ease;">
+                        <input type="checkbox" id="learn3" class="faq-checkbox" style="display: none;">
+                        <label for="learn3" class="faq-question" style="display: block; padding: 20px 24px; cursor: pointer; font-weight: 500; color: var(--text-color); font-size: 18px; margin: 0; background: var(--card-bg); transition: all 0.3s ease;">
+                            <span class="en-text">Fundamental Analysis</span>
+                            <span class="ar-text hidden">التحليل الأساسي</span>
+                        </label>
+                        <div class="faq-answer" style="display: none; padding: 0 24px 20px; color: var(--text-secondary); line-height: 1.7; font-size: 16px; background: var(--card-bg); transition: all 0.3s ease;">
+                            <p class="en-text">Learn how to evaluate companies, read financial statements, and assess valuation metrics to find fundamentally strong stocks.</p>
+                            <p class="ar-text hidden">تعلم كيفية تقييم الشركات وقراءة البيانات المالية وتحليل مقاييس التقييم للعثور على الأسهم القوية من الناحية الأساسية.</p>
+                        </div>
+                    </div>
+
+                    <div class="learn-item" style="background: var(--card-bg); margin-bottom: 16px; border-radius: 12px; box-shadow: 0 4px 12px var(--shadow-color); border: 1px solid var(--border-color); overflow: hidden; transition: all 0.3s ease;">
+                        <input type="checkbox" id="learn4" class="faq-checkbox" style="display: none;">
+                        <label for="learn4" class="faq-question" style="display: block; padding: 20px 24px; cursor: pointer; font-weight: 500; color: var(--text-color); font-size: 18px; margin: 0; background: var(--card-bg); transition: all 0.3s ease;">
+                            <span class="en-text">Trading Psychology</span>
+                            <span class="ar-text hidden">علم نفس التداول</span>
+                        </label>
+                        <div class="faq-answer" style="display: none; padding: 0 24px 20px; color: var(--text-secondary); line-height: 1.7; font-size: 16px; background: var(--card-bg); transition: all 0.3s ease;">
+                            <p class="en-text">Develop the right mindset for trading success. Learn how to manage emotions, maintain discipline, and stick to your trading plan.</p>
+                            <p class="ar-text hidden">طور العقلية الصحيحة للنجاح في التداول. تعلم كيفية إدارة العواطف، والحفاظ على الانضباط، والالتزام بخطة التداول الخاصة بك.</p>
+                        </div>
+                    </div>
+
+                    <div class="learn-item" style="background: var(--card-bg); margin-bottom: 16px; border-radius: 12px; box-shadow: 0 4px 12px var(--shadow-color); border: 1px solid var(--border-color); overflow: hidden; transition: all 0.3s ease;">
+                        <input type="checkbox" id="learn5" class="faq-checkbox" style="display: none;">
+                        <label for="learn5" class="faq-question" style="display: block; padding: 20px 24px; cursor: pointer; font-weight: 500; color: var(--text-color); font-size: 18px; margin: 0; background: var(--card-bg); transition: all 0.3s ease;">
+                            <span class="en-text">Risk Management</span>
+                            <span class="ar-text hidden">إدارة المخاطر</span>
+                        </label>
+                        <div class="faq-answer" style="display: none; padding: 0 24px 20px; color: var(--text-secondary); line-height: 1.7; font-size: 16px; background: var(--card-bg); transition: all 0.3s ease;">
+                            <p class="en-text">Learn essential risk management techniques to protect your capital, including position sizing, stop-loss strategies, and portfolio diversification.</p>
+                            <p class="ar-text hidden">تعلم تقنيات إدارة المخاطر الأساسية لحماية رأس مالك، بما في ذلك تحديد حجم المركز، واستراتيجيات وقف الخسارة، وتنويع المحفظة الاستثمارية.</p>
+                        </div>
+                    </div>
+
+                    <div class="learn-item" style="background: var(--card-bg); margin-bottom: 16px; border-radius: 12px; box-shadow: 0 4px 12px var(--shadow-color); border: 1px solid var(--border-color); overflow: hidden; transition: all 0.3s ease;">
+                        <input type="checkbox" id="learn6" class="faq-checkbox" style="display: none;">
+                        <label for="learn6" class="faq-question" style="display: block; padding: 20px 24px; cursor: pointer; font-weight: 500; color: var(--text-color); font-size: 18px; margin: 0; background: var(--card-bg); transition: all 0.3s ease;">
+                            <span class="en-text">Trading Platforms & Tools</span>
+                            <span class="ar-text hidden">منصات وأدوات التداول</span>
+                        </label>
+                        <div class="faq-answer" style="display: none; padding: 0 24px 20px; color: var(--text-secondary); line-height: 1.7; font-size: 16px; background: var(--card-bg); transition: all 0.3s ease;">
+                            <p class="en-text">Discover the best trading platforms and tools used by professionals. Learn how to use them effectively for market analysis and order execution.</p>
+                            <p class="ar-text hidden">اكتشف أفضل منصات وأدوات التداول التي يستخدمها المحترفون. تعلم كيفية استخدامها بفعالية لتحليل السوق وتنفيذ الأوامر.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin: 40px 0 20px; padding: 0 20px;">
+                    <a href="#contactForm" class="get-started-btn" style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%); color: #000; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 8px 20px var(--shadow-color); position: relative; overflow: hidden; border: none; outline: none; letter-spacing: 0.5px;">
+                        <span class="en-text" style="position: relative; z-index: 2;">Start Your Financial Freedom Journey</span>
+                        <span class="ar-text hidden" style="position: relative; z-index: 2;">ابدأ رحلتك نحو الحرية المالية</span>
+                        <span style="display: inline-flex; margin-left: 10px; transition: transform 0.3s ease; position: relative; z-index: 2;">→</span>
+                        <span style="position: absolute; top: 0; left: 0; width: 0; height: 100%; background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1; opacity: 0;"></span>
+                    </a>
+                    <style>
+                        .get-started-btn:hover {
+                            transform: translateY(-3px);
+                            box-shadow: 0 12px 25px rgba(249, 115, 22, 0.4);
+                        }
+                        .get-started-btn:hover span:last-child {
+                            transform: translateX(5px);
+                        }
+                        .get-started-btn:hover span:nth-child(3) {
+                            width: 100%;
+                            opacity: 1;
+                        }
+                        .get-started-btn:active {
+                            transform: translateY(-1px);
+                            box-shadow: 0 5px 15px rgba(249, 115, 22, 0.3);
+                        }
+                    </style>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="padding: 15px 20px; background: var(--footer-bg) !important; color: var(--footer-text) !important; text-align: center; border-top: 1px solid var(--border-color);">
+            <div style="max-width: 1000px; margin: 0 auto; font-size: 14px; opacity: 0.9;">
+                Designed and developed by 
+                <a href="https://bugcodesoftware.vercel.app/" target="_blank" style="color: white; text-decoration: none; font-weight: 500; border-bottom: 1px solid rgba(255, 255, 255, 0.5); padding-bottom: 1px; transition: all 0.3s ease;">
+                    BugCode
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    
+</body>
+</html>
+
